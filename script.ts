@@ -1,27 +1,40 @@
-const container = document.querySelector(".cards__section");
+// const container = document.querySelector(".cards__section");
 const btn = document.querySelector(".load");
 
-const container1 = document.createElement('div');
+const container1 = document.createElement("div");
+const button = document.createElement("button");
 
-container1.style.width = '600px';
-container1.style.height = '400px';
-container1.style.border = '1px solid #abababa1';
-container1.style.borderRadius = '10px';
-container1.style.padding = '50px';
-container1.style.display = 'grid';
-container1.style.gridTemplateColumns = 'repeat(4, 1fr)'
+button.textContent = "Create More";
 
-// width: 600px;
-// height: 400px;
-// border: 1px solid #abababa1;
-// border-radius: 10px;
-// padding: 50px;
-// display: grid;
-// grid-template-columns: repeat(4, 1fr);
-// grid-auto-rows: 200px;
-// gap: 30px;
-// overflow-y: scroll;
-// background-color: #000;
+const containerStyles = {
+  width: "600px",
+  height: "400px",
+  border: "1px solid #abababa1",
+  borderRadius: "10px",
+  padding: "50px",
+  display: "grid",
+  gridTemplateColumns: "repeat(4, 1fr)",
+  gridAutoRows: "200px",
+  gap: "30px",
+  overflowY: "scroll",
+  backgroundColor: "#000",
+};
+
+const btnStyles = {
+  marginTop: "30px",
+  border: "none",
+  padding: "15px 20px",
+  borderRadius: "10px",
+  backgroundColor: "cadetblue",
+  color: "#fff",
+  cursor: "pointer",
+  fontSize: "19px",
+};
+
+Object.assign(container1.style, containerStyles);
+Object.assign(button.style, btnStyles);
+
+document.body.append(container1, button);
 
 class UI {
   element: HTMLElement;
@@ -29,34 +42,42 @@ class UI {
   constructor(randomColor: string) {
     this.element = document.createElement("div");
     this.element.style.borderRadius = "10px";
-    this.element.classList.add('card');
+    this.element.style.transition = "all .2s ease-in-out";
 
-    this.color = `#${randomColor}`
+    this.element.addEventListener("mouseenter", () => {
+      this.element.style.filter = "brightness(80%)";
+    });
+
+    this.element.addEventListener("mouseleave", () => {
+      this.element.style.filter = "initial";
+    });
+
+    this.color = `${randomColor}`;
 
     this.element.style.backgroundColor = this.color;
     this.element.style.cursor = "pointer";
 
-
-    this.element.addEventListener('click', ()=> this.handleClick(this.color))
-
+    this.element.addEventListener("click", () => this.handleClick(this.color));
   }
 
-  handleClick(color:string){
-    console.log('Clicked '+ color )
+  handleClick(color: string) {
+    console.log("Clicked " + color);
     document.body.style.backgroundColor = color;
   }
 
   addContainer() {
-    container?.appendChild(this.element);
+    container1?.appendChild(this.element);
   }
-  
-
 }
-
 
 // function for generate color;
 function randomColor() {
-  return Math.floor(Math.random() * 16777215).toString(16);
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
 
 // function for create card;
@@ -69,4 +90,5 @@ function createCards() {
   }
 }
 
-btn?.addEventListener("click", createCards);
+button.addEventListener("click", createCards);
+button.addEventListener("click", () => console.log(button));
