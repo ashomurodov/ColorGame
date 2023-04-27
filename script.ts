@@ -43,6 +43,9 @@ class UI {
     this.element = document.createElement("div");
     this.element.style.borderRadius = "10px";
     this.element.style.transition = "all .2s ease-in-out";
+    this.color = `${randomColor}`;
+    this.element.style.backgroundColor = this.color;
+    this.element.style.cursor = "pointer";
 
     this.element.addEventListener("mouseenter", () => {
       this.element.style.filter = "brightness(80%)";
@@ -51,11 +54,6 @@ class UI {
     this.element.addEventListener("mouseleave", () => {
       this.element.style.filter = "initial";
     });
-
-    this.color = `${randomColor}`;
-
-    this.element.style.backgroundColor = this.color;
-    this.element.style.cursor = "pointer";
 
     this.element.addEventListener("click", () => this.handleClick(this.color));
   }
