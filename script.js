@@ -1,5 +1,8 @@
 // const container = document.querySelector(".cards__section");
 var btn = document.querySelector(".load");
+var count = 0;
+var counterEl = document.createElement("p");
+counterEl.textContent = "count of cards: ".concat(count);
 var container1 = document.createElement("div");
 var button = document.createElement("button");
 button.textContent = "Create More";
@@ -39,7 +42,7 @@ var bodyStyles = {
 Object.assign(document.body.style, bodyStyles);
 Object.assign(container1.style, containerStyles);
 Object.assign(button.style, btnStyles);
-document.body.append(container1, button);
+document.body.append(counterEl, container1, button);
 var UI = /** @class */ (function () {
     function UI(randomColor) {
         var _this = this;
@@ -58,7 +61,6 @@ var UI = /** @class */ (function () {
         this.element.addEventListener("click", function () { return _this.handleClick(_this.color); });
     }
     UI.prototype.handleClick = function (color) {
-        console.log("Clicked " + color);
         document.body.style.backgroundColor = color;
     };
     UI.prototype.addContainer = function () {
@@ -79,9 +81,10 @@ function randomColor() {
 function createCards() {
     for (var i = 0; i < 8; i++) {
         var card = new UI(randomColor());
-        console.log(card);
         card.addContainer();
+        count++;
+        counterEl.textContent = "count of cards: ".concat(count);
     }
 }
 button.addEventListener("click", createCards);
-button.addEventListener("click", function () { return console.log(button); });
+// button.addEventListener("click", () => console.log(button));

@@ -1,6 +1,10 @@
 // const container = document.querySelector(".cards__section");
 const btn = document.querySelector(".load");
 
+let count = 0;
+const counterEl = document.createElement("p");
+counterEl.textContent = `count of cards: ${count}`;
+
 const container1 = document.createElement("div");
 const button = document.createElement("button");
 
@@ -32,22 +36,21 @@ const btnStyles = {
 };
 
 const bodyStyles = {
-    fontFamily: "'Roboto', sans-serif",
-    backgroundColor: "rgb(11, 11, 58)",
-    color: "#fff",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100vh",
-  };
-  
+  fontFamily: "'Roboto', sans-serif",
+  backgroundColor: "rgb(11, 11, 58)",
+  color: "#fff",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  height: "100vh",
+};
 
-Object.assign(document.body.style, bodyStyles)
+Object.assign(document.body.style, bodyStyles);
 Object.assign(container1.style, containerStyles);
 Object.assign(button.style, btnStyles);
 
-document.body.append(container1, button);
+document.body.append(counterEl, container1, button);
 
 class UI {
   element: any;
@@ -72,7 +75,6 @@ class UI {
   }
 
   handleClick(color: string) {
-    console.log("Clicked " + color);
     document.body.style.backgroundColor = color;
   }
 
@@ -95,10 +97,12 @@ function randomColor() {
 function createCards() {
   for (let i = 0; i < 8; i++) {
     const card = new UI(randomColor());
-    console.log(card);
     card.addContainer();
+
+    count++;
+    counterEl.textContent = `count of cards: ${count}`;
   }
 }
 
 button.addEventListener("click", createCards);
-button.addEventListener("click", () => console.log(button));
+// button.addEventListener("click", () => console.log(button));
