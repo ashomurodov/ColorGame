@@ -50,7 +50,7 @@ Object.assign(button.style, btnStyles);
 document.body.append(container1, button);
 
 class UI {
-  element: HTMLElement;
+  element: any;
   color: string;
   constructor(randomColor: string) {
     this.element = document.createElement("div");
@@ -94,8 +94,7 @@ function randomColor() {
 // function for create card;
 function createCards() {
   for (let i = 0; i < 8; i++) {
-    let color = randomColor();
-    const card = new UI(color);
+    const card = new UI(randomColor());
     console.log(card);
     card.addContainer();
   }

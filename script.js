@@ -78,8 +78,7 @@ function randomColor() {
 // function for create card;
 function createCards() {
     for (var i = 0; i < 8; i++) {
-        var color = randomColor();
-        var card = new UI(color);
+        var card = new UI(randomColor());
         console.log(card);
         card.addContainer();
     }
