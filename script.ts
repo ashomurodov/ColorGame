@@ -1,6 +1,8 @@
 // const container = document.querySelector(".cards__section");
 const btn = document.querySelector(".load");
 
+
+
 let count = 0;
 const counterEl = document.createElement("p");
 counterEl.textContent = `count of cards: ${count}`;
@@ -98,11 +100,11 @@ function createCards() {
   for (let i = 0; i < 8; i++) {
     const card = new UI(randomColor());
     card.addContainer();
-
     count++;
     counterEl.textContent = `count of cards: ${count}`;
   }
 }
+
 
 button.addEventListener("click", createCards);
 // button.addEventListener("click", () => console.log(button));
