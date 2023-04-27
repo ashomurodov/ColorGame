@@ -26,6 +26,17 @@ var btnStyles = {
     cursor: "pointer",
     fontSize: "19px",
 };
+var bodyStyles = {
+    fontFamily: "'Roboto', sans-serif",
+    backgroundColor: "rgb(11, 11, 58)",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100vh",
+};
+Object.assign(document.body.style, bodyStyles);
 Object.assign(container1.style, containerStyles);
 Object.assign(button.style, btnStyles);
 document.body.append(container1, button);
@@ -35,15 +46,15 @@ var UI = /** @class */ (function () {
         this.element = document.createElement("div");
         this.element.style.borderRadius = "10px";
         this.element.style.transition = "all .2s ease-in-out";
+        this.color = "".concat(randomColor);
+        this.element.style.backgroundColor = this.color;
+        this.element.style.cursor = "pointer";
         this.element.addEventListener("mouseenter", function () {
             _this.element.style.filter = "brightness(80%)";
         });
         this.element.addEventListener("mouseleave", function () {
             _this.element.style.filter = "initial";
         });
-        this.color = "".concat(randomColor);
-        this.element.style.backgroundColor = this.color;
-        this.element.style.cursor = "pointer";
         this.element.addEventListener("click", function () { return _this.handleClick(_this.color); });
     }
     UI.prototype.handleClick = function (color) {

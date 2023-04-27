@@ -31,6 +31,19 @@ const btnStyles = {
   fontSize: "19px",
 };
 
+const bodyStyles = {
+    fontFamily: "'Roboto', sans-serif",
+    backgroundColor: "rgb(11, 11, 58)",
+    color: "#fff",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100vh",
+  };
+  
+
+Object.assign(document.body.style, bodyStyles)
 Object.assign(container1.style, containerStyles);
 Object.assign(button.style, btnStyles);
 
